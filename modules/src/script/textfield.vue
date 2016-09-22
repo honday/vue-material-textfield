@@ -1,10 +1,10 @@
 <template>
     <div class="v-textfield">
         <div class="v-textfield-content">
-            <input type="text" class="v-textfield-form" :class="{empty: isEmpty}" v-model="text" @change="changed" @keydown="keyDown">
+            <input type="text" class="v-textfield-form" :class="{empty: isEmpty}" v-model="text">
             <p class="v-textfield-labels">
                 <span class="v-textfield-label">{{ label }}</span>
-                <span class="v-textfield-placeholder" :class="{hidden: !showPlaceholder}">{{ placeholder }}</span>
+                <span class="v-textfield-placeholder" :class="{hidden: !isEmpty}">{{ placeholder }}</span>
             </p>
         </div>
     </div>
@@ -28,23 +28,12 @@
         },
         data () {
             return {
-                showPlaceholder: true,
                 text: ''
             };
         },
         methods: {
             created : function () {
                 this.text = this.value;
-            },
-            changed: function (evt) {
-                if (this.text !== undefined && this.text !== "") {
-                    this.showPlaceholder = false;
-                } else {
-                    this.showPlaceholder = true;
-                }
-            },
-            keyDown: function (evt) {
-                this.showPlaceholder = false;
             }
         },
         computed: {
